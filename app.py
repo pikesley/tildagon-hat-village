@@ -1,5 +1,3 @@
-from random import randint
-
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
@@ -30,11 +28,11 @@ class HatVillage(app.App):
         self.overlays.append(Background(colour=(0, 0, 0)))
 
         scale = 8
-        offset = 60
+        offset = -70
         chars = [
-            {"char": "H", "colour": (1, 0, 0)},
-            {"char": "A", "colour": (0, 1, 0)},
-            {"char": "T", "colour": (0, 0, 1)},
+            {"char": "H", "angle": -45, "colour": (1, 0, 0)},
+            {"char": "A", "angle": 0, "colour": (0, 1, 0)},
+            {"char": "T", "angle": 45, "colour": (0, 0, 1)},
         ]
 
         start = -offset
@@ -42,9 +40,9 @@ class HatVillage(app.App):
             self.overlays.append(
                 Character(
                     char["char"],
-                    start + randint(-1, 1),
-                    randint(-1, 1),
                     scale,
+                    offset,
+                    char["angle"],
                     char["colour"],
                 )
             )
