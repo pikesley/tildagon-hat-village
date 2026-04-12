@@ -1,11 +1,12 @@
 from .conf import font
-from .rectangle import Rectangle
+
+# from .rectangle import Rectangle
 
 
 class Character:
     """A character."""
 
-    def __init__(self, char, x, y, scale, colour, opacity=1):
+    def __init__(self, char, x, y, scale, colour, opacity=1):  # noqa: PLR0913
         """Construct."""
         self.char = char
         self.x = x
@@ -15,28 +16,24 @@ class Character:
 
         self.data = font[char]
 
-    @property
-    def pixels(self):
+
+    def draw(self, ctx):
         """Draw."""
-        pix = []
+        ctx.rgba(*self.colour)
 
         start_x = self.x - (8 * self.scale / 2)
         start_y = self.y - (8 * self.scale / 2)
         for item in self.data:
-            colour = self.colour
             left = item["x"] * self.scale
             width = item["width"] * self.scale
             top = item["y"] * self.scale
             height = item["height"] * self.scale
 
-            pix.append(
-                Rectangle(
-                    start_x + left,
-                    width,
-                    start_y + top,
-                    height,
-                    colour,
-                )
+            ctx.rectangle(
+                start_x + left,
+                start_y + top,
+                width,
+                height,
             )
 
-        return pix
+            ctx.fill()

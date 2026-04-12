@@ -6,9 +6,9 @@ results = {"upper": {}, "lower": {}, "numbers": {}}
 also = {}
 keys = ["x", "y", "width", "height"]
 
-for item in results:
+for item in results:  # noqa: PLC0206
     for character in sorted(Path("chars", item).glob("*")):
-        tree = ET.parse(character)
+        tree = ET.parse(character)  # noqa: S314
         root = tree.getroot()
 
         results[item][character.stem] = []

@@ -39,14 +39,14 @@ class HatVillage(app.App):
 
         start = -offset
         for char in chars:
-            self.overlays.extend(
+            self.overlays.append(
                 Character(
                     char["char"],
                     start + randint(-1, 1),
                     randint(-1, 1),
                     scale,
                     char["colour"],
-                ).pixels
+                )
             )
             start += offset
 
