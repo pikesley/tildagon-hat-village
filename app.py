@@ -1,3 +1,5 @@
+from random import randint
+
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
@@ -5,10 +7,9 @@ from system.patterndisplay.events import PatternDisable
 import app
 
 from .lib.background import Background
-from .lib.conf import font
-from .lib.rectangle import Rectangle
+from .lib.character import Character
 
-DEBUG = True
+DEBUG = False
 
 
 class HatVillage(app.App):
@@ -28,27 +29,26 @@ class HatVillage(app.App):
         self.overlays = []
         self.overlays.append(Background(colour=(0, 0, 0)))
 
-        self.x = 0
-        self.y = 0
-        self.scale = 4
-        start_x = self.x - (8 * self.scale / 2)
-        start_y = self.y - (8 * self.scale / 2)
-        for item in font["H"]:
-            colour = (1, 0, 0, 1)
-            left = item["x"] * self.scale
-            width = item["width"] * self.scale
-            top = item["y"] * self.scale
-            height = item["height"] * self.scale
+        scale = 8
+        offset = 60
+        chars = [
+            {"char": "H", "colour": (1, 0, 0)},
+            {"char": "A", "colour": (0, 1, 0)},
+            {"char": "T", "colour": (0, 0, 1)},
+        ]
 
-            self.overlays.append(
-                Rectangle(
-                    start_x + left,
-                    width,
-                    start_y + top,
-                    height,
-                    colour,
-                )
+        start = -offset
+        for char in chars:
+            self.overlays.extend(
+                Character(
+                    char["char"],
+                    start + randint(-1, 1),
+                    randint(-1, 1),
+                    scale,
+                    char["colour"],
+                ).pixels
             )
+            start += offset
 
         self.draw_overlays(ctx)
 
