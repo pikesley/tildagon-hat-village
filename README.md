@@ -1,3 +1,3 @@
-# HatVillage
+# Hat Village
 
-* run `python scripts/replace_hat_village.py`
+The official app of Hat Village at EMF 2026
