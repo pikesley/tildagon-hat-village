@@ -2,5 +2,5 @@ app.py
 lib
 common
 metadata.json
-font.json
-conf.json
+font.json.gz
+conf.json.gz

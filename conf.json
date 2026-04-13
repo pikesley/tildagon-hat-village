@@ -1,1 +1,46 @@
-null
+{
+  "hue-increment": 0.002,
+  "led-brightness": 0.5,
+  "letter-opacity": 0.9,
+  "rotation-rate": 4,
+  "strings": [
+    {
+      "hue-gap-factor": 4,
+      "hue-offset": 0,
+      "offset": -80,
+      "scale": 10,
+      "text": "HAT",
+      "total-angle": -110
+    },
+    {
+      "hue-gap-factor": 4,
+      "hue-offset": 0,
+      "offset": 90,
+      "scale": 6,
+      "text": "village",
+      "total-angle": 130
+    },
+    {
+      "hue-gap-factor": 4,
+      "hue-offset": 0.5,
+      "offset": -8,
+      "scale": 4,
+      "text": "EMF"
+    },
+    {
+      "hue-gap-factor": 4,
+      "hue-offset": 0.5,
+      "offset": 20,
+      "scale": 3,
+      "text": "2026"
+    },
+    {
+      "hue-gap-factor": 4,
+      "hue-offset": 0.5,
+      "offset": 0,
+      "scale": 2,
+      "text": "+            +"
+    }
+  ],
+  "twitch-amount": 0.01
+}

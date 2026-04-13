@@ -2,7 +2,7 @@ import json
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-results = {"upper": {}, "lower": {}, "numbers": {}}
+results = {"upper": {}, "lower": {}, "numbers": {}, "other": {}}
 also = {}
 keys = ["x", "y", "width", "height"]
 

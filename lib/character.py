@@ -1,20 +1,23 @@
 from math import cos, radians, sin
+from random import randint, random
 
-from .conf import font
+from .conf import conf, font
 
 
 class Character:
     """A character."""
 
-    def __init__(self, char, scale, offset, angle, colour, opacity=1):  # noqa: PLR0913
+    def __init__(self, params=None):
         """Construct."""
-        self.char = char
-        self.scale = scale
-        self.offset = offset
-        self.angle = angle
-        self.colour = list(colour) + [opacity]
-
-        self.data = font[char]
+        params = params if params else {}
+        self.char = params.get("char")
+        self.scale = params.get("scale")
+        self.angle = params.get("angle", 0)
+        self.opacity = params.get("opacity", 1)
+        self.colour = list(params.get("colour")) + [self.opacity]
+        self.offset = params.get("offset")
+        self.x_offset = params.get("x-offset", 0)
+        self.data = font[self.char]
 
     def draw(self, ctx):
         """Draw."""
@@ -24,19 +27,26 @@ class Character:
             sin(radians(self.angle)) * -self.offset,
             cos(radians(self.angle)) * self.offset,
         )
-        print(
-            sin(radians(self.angle)) * -self.offset,
-            cos(radians(self.angle)) * self.offset,
-        )
         ctx.rotate(radians(self.angle))
 
-        start_x = 0 - (8 * self.scale / 2)
-        start_y = 0 - (8 * self.scale / 2)
+        if self.x_offset:
+            ctx.translate(self.x_offset, 0)
+
+        start_x = (
+            0
+            - (8 * self.scale / 2)
+            + (random() < conf["twitch-amount"] and (randint(0, 1) * 2) - 1)
+        )
+        start_y = (
+            0
+            - (8 * self.scale / 2)
+            + (random() < conf["twitch-amount"] and (randint(0, 1) * 2) - 1)
+        )
         for item in self.data:
-            left = item["x"] * self.scale
-            width = item["width"] * self.scale
-            top = item["y"] * self.scale
-            height = item["height"] * self.scale
+            left = item[0] * self.scale
+            width = item[2] * self.scale
+            top = item[1] * self.scale
+            height = self.scale
 
             ctx.rectangle(
                 start_x + left,

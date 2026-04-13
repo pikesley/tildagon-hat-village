@@ -1,5 +1,5 @@
 {
-    "name": "HatVillage",
+    "name": "Hat Village",
     "path": "apps.hat_village.app",
     "callable": "HatVillage"
   }
