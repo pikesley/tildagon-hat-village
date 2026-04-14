@@ -7,7 +7,7 @@ also = {}
 keys = ["x", "y", "width", "height"]
 
 for item in results:  # noqa: PLC0206
-    for character in sorted(Path("chars", item).glob("*")):
+    for character in sorted(Path("chars", "svg", item).glob("*")):
         tree = ET.parse(character)  # noqa: S314
         root = tree.getroot()
 

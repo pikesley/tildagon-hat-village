@@ -1,5 +1,5 @@
-twitch-amount: 0.01
-rotation-rate: 4
+twitch-amount: 0.1
+rotation-rate: 5
 hue-increment: 0.002
 led-brightness: 0.5
 letter-opacity: 0.9

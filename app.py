@@ -65,7 +65,7 @@ class HatVillage(app.App):
             self.button_states.clear()
             self.minimise()
 
-        if self.button_states.get(BUTTON_TYPES["UP"]):
+        if self.button_states.get(BUTTON_TYPES["RIGHT"]):
             self.button_states.clear()
             self.is_rotating = False
             self.rotation = 0
@@ -73,6 +73,16 @@ class HatVillage(app.App):
         if self.button_states.get(BUTTON_TYPES["CONFIRM"]):
             self.button_states.clear()
             self.is_rotating = not self.is_rotating
+
+        if self.button_states.get(BUTTON_TYPES["UP"]):
+            self.button_states.clear()
+            if conf["twitch-amount"] < 1:
+                conf["twitch-amount"] += 0.1
+
+        if self.button_states.get(BUTTON_TYPES["DOWN"]):
+            self.button_states.clear()
+            if conf["twitch-amount"] > 0:
+                conf["twitch-amount"] -= 0.1
 
 
 __app_export__ = HatVillage
